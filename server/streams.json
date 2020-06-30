@@ -1,0 +1,25 @@
+{
+  "streams": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "description": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "description": "typicode"
+    },
+    {
+      "title": "asdasdsds",
+      "description": "asdasda",
+      "id": 3
+    },
+    {
+      "title": "asdasd",
+      "description": "asdsadaasdsdsgfsdfsd",
+      "userId": "110212332808961916959",
+      "id": 4
+    }
+  ]
+}
