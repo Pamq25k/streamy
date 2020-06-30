@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { signIn, signOut } from "../actions";
@@ -36,10 +36,28 @@ class GoogleAuth extends React.Component {
     this.props.isSignedIn ? this.auth.signOut() : this.auth.signIn();
   };
 
+  renderAuth = () => {
+    const { isSignedIn } = this.props;
+
+    if (isSignedIn === null) {
+      return (
+        <Spinner animation="border" role="status" size="sm">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      );
+    }
+
+    if (isSignedIn) {
+      return "Sign out";
+    } else {
+      return "Login with Google";
+    }
+  };
+
   render() {
     return (
       <Button variant="danger" className="ml-4" onClick={this.onClick} href="#">
-        {this.props.isSignedIn ? "Sign out" : "Login with Google"}
+        {this.renderAuth()}
       </Button>
     );
   }
