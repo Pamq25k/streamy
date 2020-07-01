@@ -17,6 +17,9 @@ const Header = () => {
             <Nav.Link as={Link} to="/">
               Streams
             </Nav.Link>
+            <Nav.Link as={Link} to="/new">
+              Create Stream
+            </Nav.Link>
             <GoogleAuth />
           </Nav>
           {/* <Form inline>

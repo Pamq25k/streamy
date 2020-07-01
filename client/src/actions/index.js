@@ -1,6 +1,7 @@
 // 654580995087-t14rsebonuq5pj7fvlvjeupv6ojp5pb1.apps.googleusercontent.com
 
 import streams from "../apis/streams";
+import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -41,6 +42,7 @@ export const createStream = (formValues) => async (dispatch, getState) => {
     type: CREATE_STREAM,
     payload: response.data,
   });
+  history.push("/");
 };
 
 export const editStream = (id, formValues) => async (dispatch) => {
@@ -50,6 +52,7 @@ export const editStream = (id, formValues) => async (dispatch) => {
     type: EDIT_STREAM,
     payload: response.data,
   });
+  history.push("/");
 };
 
 export const deleteStream = (id) => async (dispatch) => {

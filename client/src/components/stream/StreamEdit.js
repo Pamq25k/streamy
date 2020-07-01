@@ -14,8 +14,6 @@ class StreamEdit extends React.Component {
   };
 
   render() {
-    const { stream } = this.props;
-
     return (
       <>
         <h3 className="text-center">Edit Stream</h3>

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ListGroup, Row, Col, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+
+import StreamDelete from "./StreamDelete";
 import { fetchStreams } from "../../actions";
 
 class StreamList extends React.Component {
@@ -9,20 +11,18 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
-  renderAdmin(streamUserId, id) {
+  renderAdmin = (id, streamUserId) => {
     if (!streamUserId) return null;
 
     return (
       <div className="mx-auto">
-        <Button variant="danger" className="mr-3">
-          Delete
-        </Button>
+        <StreamDelete id={id} />
         <Button variant="primary" as={Link} to={`/edit/${id}`}>
           Edit
         </Button>
       </div>
     );
-  }
+  };
 
   renderStreams() {
     if (!this.props.streams) {
@@ -35,11 +35,11 @@ class StreamList extends React.Component {
 
         return (
           <Col lg="3" md="4" sm="6" key={id} className="mb-4">
-            <ListGroup.Item action as={Link} to={`/${id}`}>
-              <h3>{title}</h3>
+            <ListGroup.Item action>
+              <Link to={`/${id}`}>{title}</Link>
               <p>{description}</p>
               {userId === streamUserId
-                ? this.renderAdmin(streamUserId, id)
+                ? this.renderAdmin(id, streamUserId)
                 : null}
             </ListGroup.Item>
           </Col>
@@ -50,9 +50,14 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      <ListGroup>
-        <Row>{this.renderStreams()}</Row>
-      </ListGroup>
+      <>
+        <ListGroup>
+          <Row>{this.renderStreams()}</Row>
+        </ListGroup>
+        <Button as={Link} to="/new">
+          Create Stream
+        </Button>
+      </>
     );
   }
 }
