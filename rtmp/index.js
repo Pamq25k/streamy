@@ -1,6 +1,5 @@
 const NodeMediaServer = require("node-media-server");
-const ffmpeg = require("ffmpeg");
-console.log(ffmpeg);
+
 const config = {
   rtmp: {
     port: 1935,
@@ -15,10 +14,12 @@ const config = {
     allow_origin: "*",
   },
   trans: {
-    ffmpeg: process.env.FFMPEG_PATH,
+    ffmpeg: process.env.FFMPEG,
     tasks: [
       {
         app: "live",
+        mp4: true,
+        mp4Flags: "[movflags=faststart]",
         hls: true,
         hlsFlags: "[hls_time=2:hls_list_size=3:hls_flags=delete_segments]",
         dash: true,
